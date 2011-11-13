@@ -103,8 +103,9 @@
   <script type="text/javascript" charset="utf-8">
     jQuery(function($) {
       $('form').submit(function() {
-        var l = $(this).find('input[name=language]').attr('value');
-        var c = $(this).find('input[name=location]').attr('value');
+        var s = function(c) {  return c ? c.trim().split(/\s+/).join('_') : c; }
+        var l = s($(this).find('input[name=language]').attr('value'));
+        var c = s($(this).find('input[name=location]').attr('value'));
         var q = (l ? 'language:'+l: '') + ' ' + (c ? 'location:'+c: '');
         var c = $(this).find('input[name=q]').attr('value', q);
       });
