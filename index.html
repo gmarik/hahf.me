@@ -68,12 +68,12 @@
   <body>
     <form action="http://github.com/search" class="drop-shadow">
       Hire a hacker for me,
+      <input type="hidden" name="q" value="" />
+      <input type="hidden" name="type" value="Users" />
       </br> in <input name="location" type="text" size="10" title="a city" placeholder="a city"/>,
       </br> who's good at <input name="language" size="5" type='text' title="a language" placeholder="a lang"/>
       </br><input class="same" type="submit" value="please!"/>
 
-      <input type="hidden" name="q" value="Users" />
-      <input type="hidden" name="type" value="Users" />
     </form>
 
     <p>
@@ -103,11 +103,10 @@
   <script type="text/javascript" charset="utf-8">
     jQuery(function($) {
       $('form').submit(function() {
-        var s = function(c) {  return c ? c.trim().split(/\s+/).join('_') : c; }
-        var l = s($(this).find('input[name=language]').attr('value'));
+        var s = function(v) {  return v ? v.trim().split(/\s+/).join('_') : v; }
         var c = s($(this).find('input[name=location]').attr('value'));
-        var q = (l ? 'language:'+l: '') + ' ' + (c ? 'location:'+c: '');
-        var c = $(this).find('input[name=q]').attr('value', q);
+        var q = 'fullname:. ' + (c ? 'location:' + c : '');
+        $(this).find('input[name=q]').attr('value', q);
       });
     });
   </script>
