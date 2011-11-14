@@ -121,9 +121,15 @@
         return dic;
       }
 
+      var lola = window.location.hash.substring(1).split('/');
+      var _loc = lola[0], _lan = lola[1];
+
       var dic = pq(window.location.search.substring(1));
-      dic['location'] && $('input[name=location]').attr('value', dic['location']);
-      dic['language'] && $('input[name=language]').attr('value', dic['language']);
+
+      var loc = _loc || dic['location'], lan = _lan || dic['language'];
+
+      loc && $('input[name=location]').attr('value', loc);
+      lan && $('input[name=language]').attr('value', lan);
     });
 
   </script>
