@@ -108,6 +108,23 @@
         var q = 'fullname:. ' + (c ? 'location:' + c : '');
         $(this).find('input[name=q]').attr('value', q);
       });
+
+      var pq = function(q) {
+        var params = q.split('&');
+        var dic = {};
+        $(params).each(function(idx, _p){
+          var p = _p.split("=");
+          var n = p[0],
+              v = p[1];
+          dic[n] = v;
+        })
+        return dic;
+      }
+
+      var dic = pq(window.location.search.substring(1));
+      dic['location'] && $('input[name=location]').attr('value', dic['location']);
+      dic['language'] && $('input[name=language]').attr('value', dic['language']);
     });
+
   </script>
 </html>
